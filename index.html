@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КОФЕМАНИЯ ВПН</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+  <!-- ФИКСИРОВАННЫЙ ХЕДЕР -->
+  <header class="fixed-header">
+    <div class="header-container">
+      <div class="header-logo">КОФЕМАНИЯ VPN</div>
+      <a href="https://t.me/coffemaniaVPNbot" target="_blank" class="header-buy-btn">Купить</a>
+    </div>
+  </header>
+
+  <!-- ФОНОВЫЕ СЛОИ -->
+  <div class="bg-layer bg-layer-1"></div>
+  <div class="bg-layer bg-layer-2"></div>
+  <div class="bg-layer bg-layer-3"></div>
+  <div class="bg-network"></div>
+
+  <div class="center">
+    <h1 class="title">КОФЕМАНИЯ ВПН</h1>
+
+    <!-- /// ЗНАЧОК -->
+    <div class="slashes">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- КНОПКА -->
+    <a href="https://t.me/coffemaniaVPNbot" target="_blank" class="connect-btn">
+      [ ПОДКЛЮЧИТЬ ]
+    </a>
+
+    <!-- ОПИСАНИЕ -->
+    <div class="glass">
+      <div style="color: #888888; font-weight: 500; margin-bottom: 12px; font-size: 11px; letter-spacing: 1px;">SYSTEM STATUS</div>
+      <div style="color: #cccccc;">Моментальное подключение</div>
+      <div style="color: #cccccc;">VLESS / XRay протоколы</div>
+      <div style="color: #cccccc;">Максимальная скорость без ограничений</div>
+      
+      <!-- ИНДИКАТОР ПОДКЛЮЧЕНИЯ -->
+      <div class="connection-status" style="margin-top: 20px;">
+        <div class="status-text">
+          > Готов к подключению
+        </div>
+        <div class="connection-progress">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="connection-steps">
+          <div class="step" data-step="1">• Инициализация...</div>
+          <div class="step" data-step="2">• Поиск сервера...</div>
+          <div class="step" data-step="3">• Установка соединения...</div>
+          <div class="step" data-step="4">• Подключено!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ ПРЕИМУЩЕСТВ -->
+  <section id="features" class="features-section">
+    <h2 class="features-title">В любом тарифе вы получите:</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-icons">block</span></div>
+        <h3 class="feature-card-title">Встроенный Adblock</h3>
+        <p class="feature-card-desc">Автоматическая блокировка рекламы и вредоносных сайтов. Безопасный и быстрый интернет без навязчивой рекламы.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-icons">bolt</span></div>
+        <h3 class="feature-card-title">Высокая скорость</h3>
+        <p class="feature-card-desc">Максимальная скорость без ограничений. Весь канал в вашем распоряжении.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-icons">security</span></div>
+        <h3 class="feature-card-title">Безопасность</h3>
+        <p class="feature-card-desc">VLESS / XRay протоколы для максимальной защиты и доступности в любой стране.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-icons">check_circle</span></div>
+        <h3 class="feature-card-title">Гарантия качества</h3>
+        <p class="feature-card-desc">Если VPN не будет работать на вашем устройстве, мы вернём вам деньги.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЕКЦИЯ СРАВНЕНИЯ СКОРОСТИ -->
+  <section id="speed" class="speed-comparison-section">
+    <h2 class="speed-comparison-title">Сравнение скорости</h2>
+    <p class="speed-comparison-subtitle">Реальные результаты тестирования скорости</p>
+    <div class="speed-comparison-container">
+      <div class="speed-card">
+        <div class="speed-card-header">
+          <h3 class="speed-card-title">Наш VPN</h3>
+          <div class="speed-badge speed-badge-our">Лучший</div>
+        </div>
+        <div class="speed-image-wrapper">
+          <img src="our_vpn.png" alt="Скорость нашего VPN" class="speed-image">
+        </div>
+      </div>
+      
+      <div class="speed-card">
+        <div class="speed-card-header">
+          <h3 class="speed-card-title">Конкуренты</h3>
+          <div class="speed-badge speed-badge-competitor">УЖАСНЫЙ</div>
+        </div>
+        <div class="speed-image-wrapper">
+          <img src="concurents_vpn.png" alt="Скорость конкурентов" class="speed-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЕКЦИЯ ОТЗЫВОВ -->
+  <section id="reviews" class="reviews-section">
+    <h2 class="reviews-title">Отзывы наших пользователей</h2>
+    <div class="reviews-container">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div class="review-author">
+            <div class="review-name">Алексей М.</div>
+            <div class="review-date">2 недели назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Использую уже месяц, скорость отличная! Никаких проблем с подключением. Adblock работает идеально - рекламы вообще не вижу. Рекомендую!</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">М</div>
+          <div class="review-author">
+            <div class="review-name">Мария К.</div>
+            <div class="review-date">3 недели назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Подключила всю семью - работает на всех устройствах без сбоев. Особенно нравится, что можно использовать на роутере. Очень довольна!</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">Д</div>
+          <div class="review-author">
+            <div class="review-name">Дмитрий С.</div>
+            <div class="review-date">1 месяц назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Лучший VPN, которым пользовался. Скорость не падает даже при подключении к серверам в другой стране. Kill Switch срабатывает моментально.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">Е</div>
+          <div class="review-author">
+            <div class="review-name">Елена В.</div>
+            <div class="review-date">2 недели назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Работает стабильно, никаких разрывов соединения. Поддержка отвечает быстро. Цена адекватная за такой функционал. Всем советую!</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">И</div>
+          <div class="review-author">
+            <div class="review-name">Игорь П.</div>
+            <div class="review-date">3 недели назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Подключение моментальное, интерфейс простой. Использую для работы - все сайты открываются без проблем. Отличный сервис!</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">С</div>
+          <div class="review-author">
+            <div class="review-name">Сергей Н.</div>
+            <div class="review-date">1 неделя назад</div>
+          </div>
+          <div class="review-rating">
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+            <span class="material-icons">star</span>
+          </div>
+        </div>
+        <p class="review-text">Пользуюсь уже второй месяц. Скорость высокая, реклама блокируется автоматически. Ни разу не пожалел о покупке подписки.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">КОФЕМАНИЯ VPN</h3>
+        <p class="footer-description">Безопасный и быстрый VPN сервис с встроенным Adblock. Защитите свою приватность и получите доступ к интернету без ограничений.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4 class="footer-heading">Продукт</h4>
+        <ul class="footer-links">
+          <li><a href="#features">Возможности</a></li>
+          <li><a href="#speed">Сравнение скорости</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="https://t.me/coffemaniaVPNbot" target="_blank">Купить VPN</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4 class="footer-heading">Поддержка</h4>
+        <ul class="footer-links">
+          <li><a href="https://t.me/CoffemaniaSupport" target="_blank">Telegram</a></li>
+          <li><a href="https://t.me/CoffemaniaSupport" target="_blank">Связаться с нами</a></li>
+          <li><a href="https://t.me/CoffemaniaSupport" target="_blank">Помощь</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p class="footer-copyright">© КОФЕМАНИЯ VPN. Все права защищены.</p>
+        <div class="footer-social">
+          <a href="https://t.me/coffemaniaVPNbot" target="_blank" class="footer-social-link">
+            <span class="material-icons">send</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
