@@ -76,21 +76,51 @@ body {
 
 .header-buy-btn {
   padding: 10px 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 255, 65, 0.2);
+  border: 1px solid rgba(0, 255, 65, 0.5);
   border-radius: 8px;
   color: #ffffff;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 2px 10px rgba(0, 255, 65, 0.2),
+    0 0 15px rgba(0, 255, 65, 0.1);
+}
+
+.header-buy-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.header-buy-btn:hover::before {
+  left: 100%;
 }
 
 .header-buy-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+  background: rgba(0, 255, 65, 0.35);
+  border-color: rgba(0, 255, 65, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 15px rgba(0, 255, 65, 0.4),
+    0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.header-buy-btn:active {
+  transform: translateY(0);
+  background: rgba(0, 255, 65, 0.25);
+  box-shadow: 
+    0 2px 8px rgba(0, 255, 65, 0.3);
 }
 
 /* MATRIX BACKGROUND - более тонкий */
