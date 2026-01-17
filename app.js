@@ -294,3 +294,226 @@ const reviewObserver = new IntersectionObserver((entries) => {
 reviewCards.forEach((card) => {
   reviewObserver.observe(card);
 });
+
+// ФУНКЦИОНАЛ ОТЗЫВОВ
+const reviewForm = document.getElementById('reviewForm');
+const reviewsContainer = document.getElementById('reviewsContainer');
+const stars = document.querySelectorAll('.star');
+const ratingInput = document.getElementById('rating');
+
+// Инициализация рейтинга (по умолчанию 5 звезд)
+let currentRating = 5;
+updateStars(5);
+
+// Обработка клика по звездам
+stars.forEach((star, index) => {
+  star.addEventListener('click', () => {
+    const rating = index + 1;
+    currentRating = rating;
+    ratingInput.value = rating;
+    updateStars(rating);
+  });
+});
+
+// Обновление визуального отображения звезд
+function updateStars(rating) {
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+}
+
+// Обработка наведения на звезды
+const starRating = document.querySelector('.star-rating');
+if (starRating) {
+  starRating.addEventListener('mouseleave', () => {
+    updateStars(currentRating);
+  });
+  
+  stars.forEach((star, index) => {
+    star.addEventListener('mouseenter', () => {
+      const hoverRating = index + 1;
+      stars.forEach((s, i) => {
+        if (i < hoverRating) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+
+// Загрузка отзывов из localStorage
+function loadReviews() {
+  const savedReviews = localStorage.getItem('vpnReviews');
+  if (savedReviews) {
+    const reviews = JSON.parse(savedReviews);
+    reviews.forEach(review => {
+      addReviewToPage(review);
+    });
+  }
+}
+
+// Сохранение отзыва в localStorage
+function saveReview(review) {
+  const savedReviews = localStorage.getItem('vpnReviews');
+  const reviews = savedReviews ? JSON.parse(savedReviews) : [];
+  reviews.push(review);
+  localStorage.setItem('vpnReviews', JSON.stringify(reviews));
+}
+
+// Добавление отзыва на страницу
+function addReviewToPage(review) {
+  const reviewCard = document.createElement('div');
+  reviewCard.className = 'review-card';
+  
+  // Получаем первую букву username для аватара
+  const avatarLetter = review.username.charAt(0).toUpperCase();
+  
+  // Форматируем дату
+  const dateStr = formatDate(review.date);
+  
+  // Создаем звезды
+  let starsHTML = '';
+  for (let i = 0; i < 5; i++) {
+    starsHTML += `<span class="material-icons">${i < review.rating ? 'star' : 'star_border'}</span>`;
+  }
+  
+  reviewCard.innerHTML = `
+    <div class="review-header">
+      <div class="review-avatar">${avatarLetter}</div>
+      <div class="review-author">
+        <div class="review-name">${escapeHtml(review.username)}</div>
+        <div class="review-date">${dateStr}</div>
+      </div>
+      <div class="review-rating">
+        ${starsHTML}
+      </div>
+    </div>
+    <p class="review-text">${escapeHtml(review.text)}</p>
+  `;
+  
+  // Добавляем в начало контейнера
+  reviewsContainer.insertBefore(reviewCard, reviewsContainer.firstChild);
+  
+  // Добавляем анимацию появления
+  setTimeout(() => {
+    reviewCard.classList.add('visible');
+  }, 100);
+  
+  // Наблюдаем за новой карточкой
+  reviewObserver.observe(reviewCard);
+}
+
+// Форматирование даты
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now - date);
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) {
+    return 'сегодня';
+  } else if (diffDays === 1) {
+    return 'вчера';
+  } else if (diffDays < 7) {
+    return `${diffDays} ${getDayWord(diffDays)} назад`;
+  } else if (diffDays < 30) {
+    const weeks = Math.floor(diffDays / 7);
+    return `${weeks} ${getWeekWord(weeks)} назад`;
+  } else if (diffDays < 365) {
+    const months = Math.floor(diffDays / 30);
+    return `${months} ${getMonthWord(months)} назад`;
+  } else {
+    const years = Math.floor(diffDays / 365);
+    return `${years} ${getYearWord(years)} назад`;
+  }
+}
+
+function getDayWord(days) {
+  if (days === 1) return 'день';
+  if (days >= 2 && days <= 4) return 'дня';
+  return 'дней';
+}
+
+function getWeekWord(weeks) {
+  if (weeks === 1) return 'неделя';
+  if (weeks >= 2 && weeks <= 4) return 'недели';
+  return 'недель';
+}
+
+function getMonthWord(months) {
+  if (months === 1) return 'месяц';
+  if (months >= 2 && months <= 4) return 'месяца';
+  return 'месяцев';
+}
+
+function getYearWord(years) {
+  if (years === 1) return 'год';
+  if (years >= 2 && years <= 4) return 'года';
+  return 'лет';
+}
+
+// Экранирование HTML
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Обработка отправки формы
+if (reviewForm) {
+  reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value.trim();
+    const rating = parseInt(ratingInput.value);
+    const text = document.getElementById('reviewText').value.trim();
+    
+    // Очистка username от @ если есть
+    const cleanUsername = username.replace(/^@/, '');
+    
+    if (!cleanUsername || !text) {
+      alert('Пожалуйста, заполните все поля');
+      return;
+    }
+    
+    // Создаем объект отзыва
+    const review = {
+      username: cleanUsername,
+      rating: rating,
+      text: text,
+      date: new Date().toISOString()
+    };
+    
+    // Сохраняем отзыв
+    saveReview(review);
+    
+    // Добавляем на страницу
+    addReviewToPage(review);
+    
+    // Очищаем форму
+    reviewForm.reset();
+    currentRating = 5;
+    ratingInput.value = 5;
+    updateStars(5);
+    
+    // Показываем сообщение об успехе
+    const submitBtn = reviewForm.querySelector('.review-submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Отзыв отправлен!';
+    submitBtn.style.background = 'rgba(0, 255, 65, 0.4)';
+    
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.style.background = '';
+    }, 2000);
+  });
+}
+
+// Загружаем сохраненные отзывы при загрузке страницы
+loadReviews();

@@ -123,7 +123,62 @@
   <!-- СЕКЦИЯ ОТЗЫВОВ -->
   <section id="reviews" class="reviews-section">
     <h2 class="reviews-title">Отзывы наших пользователей</h2>
-    <div class="reviews-container">
+    
+    <!-- ФОРМА ДОБАВЛЕНИЯ ОТЗЫВА -->
+    <div class="review-form-container">
+      <h3 class="review-form-title">Оставить отзыв</h3>
+      <form id="reviewForm" class="review-form">
+        <div class="form-group">
+          <label for="username" class="form-label">Telegram username</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            class="form-input" 
+            placeholder="@username или username"
+            required
+          >
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Оценка</label>
+          <div class="star-rating">
+            <span class="star" data-rating="1">
+              <span class="material-icons">star</span>
+            </span>
+            <span class="star" data-rating="2">
+              <span class="material-icons">star</span>
+            </span>
+            <span class="star" data-rating="3">
+              <span class="material-icons">star</span>
+            </span>
+            <span class="star" data-rating="4">
+              <span class="material-icons">star</span>
+            </span>
+            <span class="star" data-rating="5">
+              <span class="material-icons">star</span>
+            </span>
+          </div>
+          <input type="hidden" id="rating" name="rating" value="5" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="reviewText" class="form-label">Ваш отзыв</label>
+          <textarea 
+            id="reviewText" 
+            name="reviewText" 
+            class="form-textarea" 
+            rows="4" 
+            placeholder="Напишите ваш отзыв..."
+            required
+          ></textarea>
+        </div>
+        
+        <button type="submit" class="review-submit-btn">Отправить отзыв</button>
+      </form>
+    </div>
+    
+    <div class="reviews-container" id="reviewsContainer">
       <div class="review-card">
         <div class="review-header">
           <div class="review-avatar">А</div>
@@ -232,6 +287,7 @@
         <p class="review-text">Скорость высокая</p>
       </div>
     </div>
+    
   </section>
 
   <!-- ФУТЕР -->
