@@ -517,3 +517,29 @@ if (reviewForm) {
 
 // Загружаем сохраненные отзывы при загрузке страницы
 loadReviews();
+
+// ОТСЛЕЖИВАНИЕ ТРАФИКА - передача ref как start в Telegram бота
+function addRefParamToTelegramLinks() {
+  // Получаем параметр ref из URL страницы
+  const urlParams = new URLSearchParams(window.location.search);
+  const refParam = urlParams.get('ref');
+  
+  // Если параметр ref есть, передаем его как start в ссылки на бота
+  if (refParam) {
+    const telegramBotLinks = document.querySelectorAll('a[href*="t.me/coffemaniaVPNbot"]');
+    
+    telegramBotLinks.forEach(link => {
+      const currentHref = link.getAttribute('href');
+      const url = new URL(currentHref);
+      
+      // Передаем ref как start в Telegram бота
+      url.searchParams.set('start', refParam);
+      
+      // Обновляем href
+      link.setAttribute('href', url.toString());
+    });
+  }
+}
+
+// Инициализация при загрузке страницы
+addRefParamToTelegramLinks();
