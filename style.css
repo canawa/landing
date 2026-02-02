@@ -74,6 +74,46 @@ body {
   letter-spacing: 2px;
 }
 
+.header-online {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #cccccc;
+  font-weight: 500;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+  animation: onlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes onlinePulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 1);
+  }
+}
+
+.online-text {
+  white-space: nowrap;
+}
+
+#onlineCount {
+  color: #00ff41;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  transition: all 0.3s ease;
+}
+
 .header-buy-btn {
   padding: 10px 24px;
   background: rgba(0, 255, 65, 0.2);
@@ -1146,6 +1186,16 @@ body::after {
     letter-spacing: 1px;
   }
   
+  .header-online {
+    font-size: 11px;
+    gap: 6px;
+  }
+  
+  .online-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
   .header-buy-btn {
     padding: 8px 16px;
     font-size: 12px;
@@ -1381,6 +1431,16 @@ body::after {
   /* ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ */
   body {
     padding: 30px 12px;
+  }
+  
+  .header-online {
+    font-size: 10px;
+    gap: 4px;
+  }
+  
+  .online-dot {
+    width: 5px;
+    height: 5px;
   }
   
   .title {

@@ -10,6 +10,42 @@ let interval = null;
 let isConnecting = false;
 let isConnected = false;
 
+// Фейковый онлайн в header (от 460 до 874)
+function updateOnlineCount() {
+  const onlineCountElement = document.getElementById('onlineCount');
+  if (onlineCountElement) {
+    const min = 460;
+    const max = 874;
+    const currentCount = parseInt(onlineCountElement.textContent) || min;
+    const newCount = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    // Плавная анимация изменения числа
+    const diff = newCount - currentCount;
+    const steps = Math.abs(diff);
+    const stepValue = diff > 0 ? 1 : -1;
+    let current = currentCount;
+    
+    const updateInterval = setInterval(() => {
+      current += stepValue;
+      onlineCountElement.textContent = current;
+      
+      if (current === newCount) {
+        clearInterval(updateInterval);
+      }
+    }, 20);
+  }
+}
+
+// Обновляем онлайн при загрузке страницы
+if (document.getElementById('onlineCount')) {
+  updateOnlineCount();
+  
+  // Обновляем онлайн каждые 5-10 секунд
+  setInterval(() => {
+    updateOnlineCount();
+  }, Math.random() * 5000 + 5000);
+}
+
 // Анимация полосок при наведении
 button.addEventListener("mouseenter", () => {
   let i = 0;
