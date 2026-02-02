@@ -10,18 +10,49 @@ let interval = null;
 let isConnecting = false;
 let isConnected = false;
 
-// Фейковый онлайн в header (от 460 до 874)
+// Фейковый онлайн в header (зависит от времени суток по МСК)
+function getMoscowTime() {
+  const now = new Date();
+  // Получаем московское время (UTC+3)
+  // Используем toLocaleString для получения времени в часовом поясе Москвы
+  const moscowTimeString = now.toLocaleString('en-US', { 
+    timeZone: 'Europe/Moscow',
+    hour: 'numeric',
+    hour12: false
+  });
+  return parseInt(moscowTimeString);
+}
+
+function getOnlineRange() {
+  const hour = getMoscowTime();
+  
+  // Ночь (0-6): минимум
+  if (hour >= 0 && hour < 6) {
+    return { min: 120, max: 200 };
+  }
+  // Утро (6-12): около 170
+  else if (hour >= 6 && hour < 12) {
+    return { min: 150, max: 250 };
+  }
+  // День (12-18): средне
+  else if (hour >= 12 && hour < 18) {
+    return { min: 200, max: 350 };
+  }
+  // Вечер (18-24): больше
+  else {
+    return { min: 300, max: 500 };
+  }
+}
+
 function updateOnlineCount() {
   const onlineCountElement = document.getElementById('onlineCount');
   if (onlineCountElement) {
-    const min = 460;
-    const max = 874;
-    const currentCount = parseInt(onlineCountElement.textContent) || min;
-    const newCount = Math.floor(Math.random() * (max - min + 1)) + min;
+    const range = getOnlineRange();
+    const currentCount = parseInt(onlineCountElement.textContent) || range.min;
+    const newCount = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
     
     // Плавная анимация изменения числа
     const diff = newCount - currentCount;
-    const steps = Math.abs(diff);
     const stepValue = diff > 0 ? 1 : -1;
     let current = currentCount;
     
@@ -29,7 +60,8 @@ function updateOnlineCount() {
       current += stepValue;
       onlineCountElement.textContent = current;
       
-      if (current === newCount) {
+      if ((stepValue > 0 && current >= newCount) || (stepValue < 0 && current <= newCount)) {
+        onlineCountElement.textContent = newCount;
         clearInterval(updateInterval);
       }
     }, 20);
