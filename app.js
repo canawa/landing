@@ -295,7 +295,7 @@ reviewCards.forEach((card) => {
   reviewObserver.observe(card);
 });
 
-// ФУНКЦИОНАЛ ОТЗЫВОВ
+  // ФУНКЦИОНАЛ ОТЗЫВОВ
 const reviewForm = document.getElementById('reviewForm');
 const reviewsContainer = document.getElementById('reviewsContainer');
 const stars = document.querySelectorAll('.star');
