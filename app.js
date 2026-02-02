@@ -49,9 +49,16 @@ function updateOnlineCount() {
   if (onlineCountElement) {
     const range = getOnlineRange();
     const currentCount = parseInt(onlineCountElement.textContent) || range.min;
-    const newCount = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
     
-    // Плавная анимация изменения числа
+    // Ограничиваем максимальное изменение за раз (не больше 20 единиц)
+    const maxChange = 20;
+    const targetMin = Math.max(range.min, currentCount - maxChange);
+    const targetMax = Math.min(range.max, currentCount + maxChange);
+    
+    // Генерируем новое значение в ограниченном диапазоне
+    const newCount = Math.floor(Math.random() * (targetMax - targetMin + 1)) + targetMin;
+    
+    // Плавная анимация изменения числа (медленнее)
     const diff = newCount - currentCount;
     const stepValue = diff > 0 ? 1 : -1;
     let current = currentCount;
@@ -64,7 +71,7 @@ function updateOnlineCount() {
         onlineCountElement.textContent = newCount;
         clearInterval(updateInterval);
       }
-    }, 20);
+    }, 30); // Немного медленнее анимация
   }
 }
 
@@ -72,10 +79,10 @@ function updateOnlineCount() {
 if (document.getElementById('onlineCount')) {
   updateOnlineCount();
   
-  // Обновляем онлайн каждые 5-10 секунд
+  // Обновляем онлайн каждые 25-45 секунд (реже)
   setInterval(() => {
     updateOnlineCount();
-  }, Math.random() * 5000 + 5000);
+  }, Math.random() * 20000 + 25000);
 }
 
 // Анимация полосок при наведении
